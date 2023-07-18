@@ -20,7 +20,23 @@ class SocialNetwork:
     def  create_account(self):
         #implement function that creates account here
         print("Creating ...")
-        pass
+        name = input("What is your name?")
+        age = input("What is your age?")
+        user = Person(name, age)
+        self.list_of_people.append(user)
+    
+
+    def send_message(prsn,message):
+        #for loop to search in self.list_of_people
+        prsn.messages.append(message)
+
+    def get_current_user(self,name):
+        for person in self.list_of_people:
+            if name == person.id:
+                return person
+    
+
+
 
 
 class Person:
@@ -28,11 +44,35 @@ class Person:
         self.id = name
         self.year = age
         self.friendlist = []
+        self.blocklist = []
+        self.messages=[]
 
     def add_friend(self, person_object):
+        self.friendlist.append(person_object) 
+        print(self.friendlist)
         #implement adding friend. Hint add to self.friendlist
+
+    def block_friend(self, person_object):
+        self.blocklist.append(person_object)
+        
+
+    def view_friendlist(self):
+        print("Your friendlist: ")
+        print(self.friendlist)
+        
+    def view_blocklist(self):
+        print("Your blocked friends are: ")
+        print(self.blocklist)
+
+    def edit_details(self):
+        new_age = input("Enter new age: ")
+        new_name = input("Enter new name: ")
+        self.id = new_name
+        self.year = new_age
+        
+    def send_message(self, person_object):
+        message = input("Enter your message: ")
+        person_object.messages.append(message)
+        print("Message sent!")
         pass
 
-    def send_message(self):
-        #implement sending message to friend here
-        pass
